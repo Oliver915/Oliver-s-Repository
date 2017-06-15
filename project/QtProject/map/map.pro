@@ -10,6 +10,8 @@ CONFIG -= app_bundle
 TEMPLATE = app
 
 SOURCES += main.cpp \
-    creatnewmap.cpp
+    createtext.cpp \
+    creategridplane.cpp \
+    createscenegraph.cpp
 
-LIBS  += -losg -losgDB -losgViewer -losgGA -losgUtil
+LIBS  += -losg -losgDB -losgViewer -losgGA -losgUtil -losgText
