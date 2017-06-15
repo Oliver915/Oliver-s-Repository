@@ -4,14 +4,22 @@
 int main(int argc, char** argv)
 {
     QApplication a(argc, argv);
+    osg::ref_ptr<osg::Group> root = new osg::Group();
+    osg::ref_ptr<osg::Node> loadedMap = osgDB::readNodeFile(
+            "/home/mengyu/material/simpleMap.osg");
     osg::ref_ptr<osg::Node> loadedModel =
             osgDB::readNodeFile(
-                    "/usr/share/openscenegraph/data/"
-                    "cow.osg");
+                    "/home/mengyu/material/"
+                    "gliderZoomIn.osg");
+    root->addChild(loadedMap.get());
+    root->addChild(loadedModel.get());
+
     ViewerQT* ViewerWindow = new ViewerQT;
     ViewerWindow->setCameraManipulator(
             new osgGA::TrackballManipulator);
-    ViewerWindow->setSceneData(loadedModel.get());
+    ViewerWindow->getCamera()->setClearColor(
+            osg::Vec4(0., 0., 0., 1.));
+    ViewerWindow->setSceneData(root.get());
 
     QMainWindow* mw = new QMainWindow();
     mw->showMaximized();
