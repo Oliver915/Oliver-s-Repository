@@ -14,9 +14,11 @@ SOURCES += main.cpp \
     viewerqt.cpp \
     transform.cpp
 
-LIBS  +=  -losg -losgDB -losgViewer -losgGA -losgUtil -losgQt -lOpenThreads
+LIBS  +=  -losg -losgDB -losgViewer -losgGA -losgUtil -losgQt -lOpenThreads -losgAnimation
 
 HEADERS += \
     adapterwidget.h \
     viewerqt.h \
     transform.h
+
+

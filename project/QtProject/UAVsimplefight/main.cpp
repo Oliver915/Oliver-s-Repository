@@ -16,7 +16,7 @@ int main(int argc, char** argv)
     Transform* glider5 = new Transform;
     osg::ref_ptr<osg::Node> loadedModel1 =
             glider1->CreateGlider(
-                    0.f, 0.f, 30.f, 60.f, -40.f, 60.f, 1);
+                    10.f, 10.f, 30.f, 60.f, -40.f, 60.f, 1);
     osg::ref_ptr<osg::Node> loadedModel2 =
             glider2->CreateGlider(
                     -80.f, -40.f, 30.f, 10.f, 90.f, 100.f,
@@ -59,4 +59,7 @@ int main(int argc, char** argv)
     delete ViewerWindow;
     delete glider1;
     delete glider2;
+    delete glider3;
+    delete glider4;
+    delete glider5;
 }
