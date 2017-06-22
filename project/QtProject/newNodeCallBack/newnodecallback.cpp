@@ -1,21 +1,20 @@
 #include "newnodecallback.h"
+#include <unistd.h>
+osg::Vec3 getBoundingBoxPosition(osg::Node* node);
 
-newNodeCallBack::newNodeCallBack(osg::Vec3* v)
-    : h(0)
-{
-    vec = v;
-}
+newNodeCallBack::newNodeCallBack() {}
 
 void newNodeCallBack::operator()(
         osg::Node* node, osg::NodeVisitor* nv)
 {
+    osg::Vec3 vec = getBoundingBoxPosition(node);
     osg::ref_ptr<osg::MatrixTransform> mt =
             dynamic_cast<osg::MatrixTransform*>(node);
     if (mt)
     {
-        mt->setMatrix(osg::Matrix::translate(
-                vec->x(), vec->y(), vec->z() + h));
-        h += 0.01;
+
+        mt->setMatrix(osg::Matrix::translate(vec));
+        mt->setMatrix(osg::Matrix::translate(-vec));
     }
 
     traverse(node, nv);

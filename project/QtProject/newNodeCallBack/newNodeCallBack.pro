@@ -10,7 +10,10 @@ CONFIG -= app_bundle
 TEMPLATE = app
 
 SOURCES += main.cpp \
-    newnodecallback.cpp
+    newnodecallback.cpp \
+    createaxis.cpp \
+    boundingbox.cpp \
+    timer.cpp
 
 LIBS  +=  -losg -losgDB -losgViewer -losgGA -losgUtil -losgQt -lOpenThreads -losgAnimation
 
