@@ -9,6 +9,7 @@ bool MyHandler::handleKeyDown(
     //            dynamic_cast<osgViewer::Viewer*>(&aa);
     if (!_model) return false;
     osg::Matrix matrix = _model->getMatrix();
+    osg::Vec3 v;
     switch (ea.getKey())
     {
         case 'a':
@@ -44,9 +45,23 @@ bool MyHandler::handleKeyDown(
             home(ea, aa);
             return true;
             break;
+        case '1':
+            v = getBoundingBoxPosition(_model.get());
+            cout << v.x() << " , " << v.y() << " , "
+                 << v.z() << endl;
+            break;
         default:
             break;
     }
     _model->setMatrix(matrix);
     return false;
+}
+
+osg::Vec3 MyHandler::getBoundingBoxPosition(
+        osg::MatrixTransform* mt)
+{
+    osg::BoundingSphere pcenter = mt->getBound();
+    osg::Vec3 vec = pcenter.center();
+
+    return vec;
 }

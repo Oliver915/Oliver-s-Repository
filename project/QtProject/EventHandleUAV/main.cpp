@@ -1,4 +1,5 @@
 #include <osgGA/TrackballManipulator>
+#include <osgViewer/ViewerEventHandlers>
 #include "adapterwidget.h"
 #include "myhandler.h"
 #include "uav.h"
@@ -56,8 +57,8 @@ int main(int argc, char** argv)
     Model1Root->addChild(mt);
     root->addChild(loadedMap.get());
     root->addChild(Model1Root.get());
-//    osg::ref_ptr<MyHandler> ctrler =
-//            new MyHandler(mt.get());
+    //    osg::ref_ptr<MyHandler> ctrler =
+    //            new MyHandler(mt.get());
 
     //    root->addChild(loadedModel2);
     //    root->addChild(loadedModel3);
@@ -70,6 +71,7 @@ int main(int argc, char** argv)
     ViewerWindow->setSceneData(root.get());
     ViewerWindow->setCameraManipulator(
             new MyHandler(mt.get()));
+    ViewerWindow->addEventHandler(new osgViewer::StatsHandler);
 
     QMainWindow* mw = new QMainWindow();
     mw->showMaximized();

@@ -13,7 +13,6 @@ SOURCES += main.cpp \
     adapterwidget.cpp \
     viewerqt.cpp \
     myhandler.cpp \
-    datainfo.cpp \
     uav.cpp
 
 # The following define makes your compiler emit warnings if you use
