@@ -1,0 +1,84 @@
+#include <osg/Geode>
+#include <osg/Group>
+#include <osg/MatrixTransform>
+#include <osg/Geode>
+#include <osg/Geometry>
+#include <osg/StateSet>
+#include <osg/StateAttribute>
+#include <osg/ShadeModel>
+#include <osg/CullFace>
+#include <osg/PolygonMode>
+#include <osg/LineWidth>
+...72
+建立一个场景图形
+osg::ref_ptr<osg::Node> createSceneGraph()
+{
+// 创建 Group 根节点。
+osg::ref_ptr<osg::Group> root = new osg::Group;
+{
+// 在根节点的 StateSet 中禁止光照。
+// 使用 PROTECTED 以保证这一修改不会被 osgviewer 覆盖。
+osg::StateSet* state = root->getOrCreateStateSet();
+state->setMode( GL_LIGHTING,
+osg::StateAttribute::OFF |
+osg::StateAttribute::PROTECTED );
+}
+// 创建 Geode 叶节点并关联 Drawable。
+osg::ref_ptr<osg::Geode> geode = new osg::Geode;
+geode->addDrawable( createDrawable().get() );
+osg::Matrix m;
+{
+// 左上角:使用缺省属性渲染几何体。
+osg::ref_ptr<osg::MatrixTransform> mt =
+new osg::MatrixTransform;
+m.makeTranslate( -2.f, 0.f, 2.f );
+mt->setMatrix( m );
+root->addChild( mt.get() );
+mt->addChild( geode.get() );
+}
+{
+// 右上角:设置着色模式为 FLAT(单色)。
+osg::ref_ptr<osg::MatrixTransform> mt =
+new osg::MatrixTransform;OpenSceneGraph 快速入门指导
+m.makeTranslate( 2.f, 0.f, 2.f );
+mt->setMatrix( m );
+root->addChild( mt.get() );
+mt->addChild( geode.get() );
+osg::StateSet* state = mt->getOrCreateStateSet();
+osg::ShadeModel* sm = new osg::ShadeModel();
+sm->setMode( osg::ShadeModel::FLAT );
+state->setAttribute( sm );
+}
+{
+// 左下角:开启背面剔除。
+osg::ref_ptr<osg::MatrixTransform> mt =
+new osg::MatrixTransform;
+m.makeTranslate( -2.f, 0.f, -2.f );
+mt->setMatrix( m );
+root->addChild( mt.get() );
+mt->addChild( geode.get() );
+osg::StateSet* state = mt->getOrCreateStateSet();
+osg::CullFace* cf = new osg::CullFace(); // 缺省值为 BACK
+state->setAttributeAndModes( cf );
+}
+{
+// 右下角:设置多边形填充模式为 LINE(线框)。
+osg::ref_ptr<osg::MatrixTransform> mt =
+new osg::MatrixTransform;
+m.makeTranslate( 2.f, 0.f, -2.f );
+mt->setMatrix( m );
+root->addChild( mt.get() );
+mt->addChild( geode.get() );
+osg::StateSet* state = mt->getOrCreateStateSet();
+7374
+建立一个场景图形
+osg::PolygonMode* pm = new osg::PolygonMode(
+osg::PolygonMode::FRONT_AND_BACK,
+osg::PolygonMode::LINE );
+state->setAttributeAndModes( pm );
+// 同时还设置线宽为 3。
+osg::LineWidth* lw = new osg::LineWidth( 3.f );
+state->setAttribute( lw );
+}
+return root.get();
+}
