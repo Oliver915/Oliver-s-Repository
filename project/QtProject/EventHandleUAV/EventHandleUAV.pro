@@ -13,7 +13,9 @@ SOURCES += main.cpp \
     adapterwidget.cpp \
     viewerqt.cpp \
     myhandler.cpp \
-    uav.cpp
+    uav.cpp \
+    createhud_viewpoint.cpp \
+    chud_viewpoint.cpp
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which as been marked deprecated (the exact warnings
@@ -32,4 +34,6 @@ HEADERS += \
     viewerqt.h \
     myhandler.h \
     datainfo.h \
-    uav.h
+    uav.h \
+    createhud_viewpoint.h \
+    chud_viewpoint.h

@@ -7,34 +7,34 @@ osg::ref_ptr<osg::Node> UAV::CreateGlider(
         float z2,*/ int a)
 {
     osg::ref_ptr<osg::Node> glider = osgDB::readNodeFile(
-            "/home/mengyu/material/"
+            "/home/lzt/material/"
             "gliderZoomIn10.osg");
     osg::ref_ptr<osg::Image> skin = new osg::Image;
     switch (a)
     {
         case 0:
             skin = osgDB::readImageFile(
-                    "/home/mengyu/material/data/Images/"
+                    "/home/lzt/material/data/Images/"
                     "red.png");
             break;
         case 1:
             skin = osgDB::readImageFile(
-                    "/home/mengyu/material/data/Images/"
+                    "/home/lzt/material/data/Images/"
                     "blue.png");
             break;
         case 2:
             skin = osgDB::readImageFile(
-                    "/home/mengyu/material/data/Images/"
+                    "/home/lzt/material/data/Images/"
                     "green.png");
             break;
         case 3:
             skin = osgDB::readImageFile(
-                    "/home/mengyu/material/data/Images/"
+                    "/home/lzt/material/data/Images/"
                     "yellow.png");
             break;
         case 4:
             skin = osgDB::readImageFile(
-                    "/home/mengyu/material/data/Images/"
+                    "/home/lzt/material/data/Images/"
                     "pink.png");
             break;
     }
@@ -70,8 +70,8 @@ osg::ref_ptr<osg::Node> UAV::CreateGlider(
     osg::ref_ptr<osg::Geode> textGeode = new osg::Geode;
     osg::ref_ptr<osgText::Font> font =
             osgText::readFontFile(
-                    "/home/mengyu/material/data/fonts/"
-                    "arial.ttf");
+                "/home/lzt/material/data/fonts/"
+                "arial.ttf");
     osg::ref_ptr<osgText::Text> text = new osgText::Text;
     text->setFont(font.get());
     text->setText("1");

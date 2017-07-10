@@ -45,11 +45,11 @@ bool MyHandler::handleKeyDown(
             home(ea, aa);
             return true;
             break;
-        case '1':
-            v = getBoundingBoxPosition(_model.get());
-            cout << v.x() << " , " << v.y() << " , "
-                 << v.z() << endl;
-            break;
+//        case '1':
+//            v = getBoundingBoxPosition(_model.get());
+//            cout << v.x() << " , " << v.y() << " , "
+//                 << v.z() << endl;
+//            break;
         default:
             break;
     }
@@ -57,11 +57,10 @@ bool MyHandler::handleKeyDown(
     return false;
 }
 
-osg::Vec3 MyHandler::getBoundingBoxPosition(
-        osg::MatrixTransform* mt)
-{
-    osg::BoundingSphere pcenter = mt->getBound();
-    osg::Vec3 vec = pcenter.center();
-
-    return vec;
-}
+//osg::Vec3 MyHandler::getBoundingBoxPosition(
+//        osg::MatrixTransform* mt)
+//{
+//    osg::BoundingSphere pcenter = mt->getBound();
+//    osg::Vec3 vec = pcenter.center();
+//    return vec;
+//}

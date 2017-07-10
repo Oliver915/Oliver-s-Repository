@@ -1,6 +1,8 @@
 #include <osgGA/TrackballManipulator>
 #include <osgViewer/ViewerEventHandlers>
 #include "adapterwidget.h"
+#include "chud_viewpoint.h"
+#include "createhud_viewpoint.h"
 #include "myhandler.h"
 #include "uav.h"
 #include "viewerqt.h"
@@ -10,7 +12,7 @@ int main(int argc, char** argv)
     QApplication a(argc, argv);
     osg::ref_ptr<osg::Group> root = new osg::Group();
     osg::ref_ptr<osg::Node> loadedMap = osgDB::readNodeFile(
-            "/home/mengyu/material/SimpleMap.osg");
+            "/home/lzt/material/SimpleMap.osg");
 
     UAV* glider1 = new UAV;
     UAV* glider2 = new UAV;
@@ -64,6 +66,10 @@ int main(int argc, char** argv)
     //    root->addChild(loadedModel3);
     //    root->addChild(loadedModel4);
     //    root->addChild(loadedModel5);
+    osgText::Text* text = new osgText::Text;
+    osg::ref_ptr<CHUD_viewPoint> pHUD =
+            new CHUD_viewPoint(text, mt);
+    root->addChild(createHUD_viewPoint(text));
 
     ViewerQT* ViewerWindow = new ViewerQT;
     ViewerWindow->getCamera()->setClearColor(
@@ -71,8 +77,7 @@ int main(int argc, char** argv)
     ViewerWindow->setSceneData(root.get());
     ViewerWindow->setCameraManipulator(
             new MyHandler(mt.get()));
-    ViewerWindow->addEventHandler(new osgViewer::StatsHandler);
-
+    ViewerWindow->addEventHandler(pHUD.get());
     QMainWindow* mw = new QMainWindow();
     mw->showMaximized();
     mw->setCentralWidget(ViewerWindow);
