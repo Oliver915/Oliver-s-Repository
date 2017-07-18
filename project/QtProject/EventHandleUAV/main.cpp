@@ -52,15 +52,20 @@ int main(int argc, char** argv)
     //                    /*80.f, 40.f, 80.f, 10.f, 85.f,
     //                    20.f,*/
     //                    4);
-    osg::ref_ptr<osg::MatrixTransform> mt =
-            new osg::MatrixTransform;
+    osg::ref_ptr<osgSim::DOFTransform> doft =
+            new osgSim::DOFTransform;
+    doft->setMaxHPR(osg::Vec3(0.785 ,0.785, 0.785));
+    doft->setMaxScale(osg::Vec3(100 ,100, 100));
+    doft->setMinTranslate(osg::Vec3(-1000.f,-1000.f,-1000.f));
+    doft->setMaxTranslate(osg::Vec3(1000.f,1000.f,1000.f));
+    doft->setCurrentScale(osg::Vec3(1.f,1.f,1.f));
     osg::ref_ptr<osg::Group> Model1Root = new osg::Group;
-    mt->addChild(loadedModel1.get());
-    Model1Root->addChild(mt);
+    doft->addChild(loadedModel1.get());
+    Model1Root->addChild(doft);
     root->addChild(loadedMap.get());
     root->addChild(Model1Root.get());
     //    osg::ref_ptr<MyHandler> ctrler =
-    //            new MyHandler(mt.get());
+    //            new MyHandler(doft.get());
 
     //    root->addChild(loadedModel2);
     //    root->addChild(loadedModel3);
@@ -68,7 +73,7 @@ int main(int argc, char** argv)
     //    root->addChild(loadedModel5);
     osgText::Text* text = new osgText::Text;
     osg::ref_ptr<CHUD_viewPoint> pHUD =
-            new CHUD_viewPoint(text, mt);
+            new CHUD_viewPoint(text, doft);
     root->addChild(createHUD_viewPoint(text));
 
     ViewerQT* ViewerWindow = new ViewerQT;
@@ -76,7 +81,7 @@ int main(int argc, char** argv)
             osg::Vec4(0., 0., 0, 0.));
     ViewerWindow->setSceneData(root.get());
     ViewerWindow->setCameraManipulator(
-            new MyHandler(mt.get()));
+            new MyHandler(doft.get()));
     ViewerWindow->addEventHandler(pHUD.get());
     QMainWindow* mw = new QMainWindow();
     mw->showMaximized();

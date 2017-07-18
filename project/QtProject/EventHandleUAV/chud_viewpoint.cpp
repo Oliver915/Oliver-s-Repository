@@ -25,9 +25,9 @@ bool CHUD_viewPoint::handle(
     }
 }
 osg::Vec3 CHUD_viewPoint::getBoundingBoxPosition(
-        osg::MatrixTransform* mt)
+        osgSim::DOFTransform* doft)
 {
-    osg::BoundingSphere pcenter = mt->getBound();
+    osg::BoundingSphere pcenter = doft->getBound();
     osg::Vec3 vec = pcenter.center();
     return vec;
 }

@@ -18,6 +18,7 @@
 #include <osgDB/ReadFile>
 #include <osgText/Font>
 #include <osgText/Text>
+#include <osgSim/DOFTransform>
 
 class UAV : public osg::Node
 {

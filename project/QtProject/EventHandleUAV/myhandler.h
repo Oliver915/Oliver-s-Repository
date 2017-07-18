@@ -6,16 +6,19 @@
 #include <osgGA/GUIEventAdapter>
 #include <osgGA/GUIEventHandler>
 #include <osgGA/TrackballManipulator>
+#include <osgSim/DOFTransform>
 #include <osgViewer/Viewer>
+#include "findnodevisitor.h"
 using namespace std;
 
 class MyHandler : public osgGA::TrackballManipulator
 {
 public:
-    MyHandler(osg::MatrixTransform* node)
+    MyHandler(osg::Node* node)
         : _model(node)
     {
     }
+
     virtual bool handleKeyDown(
             const osgGA::GUIEventAdapter& ea,
             osgGA::GUIActionAdapter& aa);
@@ -23,7 +26,7 @@ public:
             osg::MatrixTransform* mt);
 
 protected:
-    osg::ref_ptr<osg::MatrixTransform> _model;
+    osg::ref_ptr<osg::Node> _model;
 };
 
 #endif  // MYHANDLER_H

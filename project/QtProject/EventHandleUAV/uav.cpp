@@ -1,14 +1,12 @@
 #include "uav.h"
 
 UAV::UAV() {}
-
 osg::ref_ptr<osg::Node> UAV::CreateGlider(
         /*        float x1, float y1, float z1, float x2, float y2,
         float z2,*/ int a)
 {
-    osg::ref_ptr<osg::Node> glider = osgDB::readNodeFile(
-            "/home/lzt/material/"
-            "gliderZoomIn10.osg");
+    osg::ref_ptr<osg::Node> UAV = osgDB::readNodeFile(
+            "/home/lzt/material/rq1b.osg");
     osg::ref_ptr<osg::Image> skin = new osg::Image;
     switch (a)
     {
@@ -65,13 +63,13 @@ osg::ref_ptr<osg::Node> UAV::CreateGlider(
     state->setTextureAttributeAndModes(
             1, texgen.get(), osg::StateAttribute::ON);
     state->setTextureAttributeAndModes(1, texenv.get());
-    glider->setStateSet(state.get());
+    UAV->setStateSet(state.get());
     // text
     osg::ref_ptr<osg::Geode> textGeode = new osg::Geode;
     osg::ref_ptr<osgText::Font> font =
             osgText::readFontFile(
-                "/home/lzt/material/data/fonts/"
-                "arial.ttf");
+                    "/home/lzt/material/data/fonts/"
+                    "arial.ttf");
     osg::ref_ptr<osgText::Text> text = new osgText::Text;
     text->setFont(font.get());
     text->setText("1");
@@ -185,7 +183,7 @@ osg::ref_ptr<osg::Node> UAV::CreateGlider(
     //    GliderLine->addChild(LineGroup);
     //    return GliderLine;
     osg::ref_ptr<osg::Group> grp = new osg::Group;
-    grp->addChild(glider);
+    grp->addChild(UAV);
     grp->addChild(textGeode.get());
     return grp;
 }
