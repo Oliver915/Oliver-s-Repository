@@ -5,83 +5,146 @@ bool MyHandler::handleKeyDown(
         const osgGA::GUIEventAdapter& ea,
         osgGA::GUIActionAdapter& aa)
 {
-    //    osgViewer::Viewer* viewer =
-    //            dynamic_cast<osgViewer::Viewer*>(&aa);
+    osgViewer::Viewer* viewer =
+            dynamic_cast<osgViewer::Viewer*>(&aa);
     if (!_model) return false;
     //    osg::Matrix matrix = _model->getMatrix();
     //    osg::Vec3 v;
-    findNodeVisitor findUAVNode("UAV");
-    _model->accept(findUAVNode);
-    osgSim::DOFTransform* uavDOF =
-            dynamic_cast<osgSim::DOFTransform*>(
-                    findUAVNode.getFirst());
+    //    findNodeVisitor findUAVNode("1");
+    //    _model->accept(findUAVNode);
+    //    osgSim::DOFTransform* _uavDOF =
+    //            dynamic_cast<osgSim::DOFTransform*>(
+    //                    findUAVNode.getFirst());
+
+    osg::Vec3 v;
     switch (ea.getKey())
     {
-        case 'a':
-        case 'A':
-            if (uavDOF)
+        if (viewer)
+        {
+            case 'a':
+            case 'A':
+                if (_uavDOF)
+                {
+                    _uavDOF->setCurrentTranslate(
+                            osg::Vec3(50.f, 50.f, 50.f));
+                }
+                break;
+            case 'd':
+            case 'D':
+                if (_uavDOF)
+                {
+                    _uavDOF->setCurrentHPR(osg::Vec3(
+                            3.14159 / 4.0, 0.f, 0.f));
+                }
+                break;
+            case 'w':
+            case 'W':
+                if (_uavDOF)
+                {
+                    _uavDOF->setCurrentHPR(osg::Vec3(
+                            0.f, 3.14159 / 4.0, 0.f));
+                }
+                break;
+            case 's':
+            case 'S':
+                if (_uavDOF)
+                {
+                    _uavDOF->setCurrentHPR(osg::Vec3(
+                            0.f, -3.14159 / 4.0, 0.f));
+                }
+                break;
+            case 'j':
+            case 'J':
+                if (_uavDOF)
+                {
+                    _uavDOF->setCurrentHPR(osg::Vec3(
+                            0.f, 0.f, -3.14159 / 4.0));
+                }
+                break;
+            case 'k':
+            case 'K':
+                if (_uavDOF)
+                {
+                    _uavDOF->setCurrentHPR(osg::Vec3(
+                            0.f, 0.f, 3.14159 / 4.0));
+                }
+                break;
+            case '1':
             {
-                uavDOF->setCurrentTranslate(osg::Vec3(
-                        50.f, 50.f, 50.f));
+                findNodeVisitor findUAVNode1("1");
+                _model->accept(findUAVNode1);
+                _uavDOF =
+                        dynamic_cast<osgSim::DOFTransform*>(
+                                findUAVNode1.getFirst());
+                _uavDOF->setCurrentTranslate(
+                        osg::Vec3(50.f, 50.f, 50.f));
+                break;
             }
-            break;
-        case 'd':
-        case 'D':
-            if (uavDOF)
+            case '2':
             {
-                uavDOF->setCurrentHPR(
-                        osg::Vec3(3.14159 / 4.0, 0.f, 0.f));
+                findNodeVisitor findUAVNode2("2");
+                _model->accept(findUAVNode2);
+                _uavDOF =
+                        dynamic_cast<osgSim::DOFTransform*>(
+                                findUAVNode2.getFirst());
+                break;
             }
-            break;
-        case 'w':
-        case 'W':
-            if (uavDOF)
+            case '3':
             {
-                uavDOF->setCurrentHPR(
-                        osg::Vec3(0.f, 3.14159 / 4.0, 0.f));
+                findNodeVisitor findUAVNode3("3");
+                _model->accept(findUAVNode3);
+                _uavDOF =
+                        dynamic_cast<osgSim::DOFTransform*>(
+                                findUAVNode3.getFirst());
+                break;
             }
-            break;
-        case 's':
-        case 'S':
-            if (uavDOF)
-            {
-                uavDOF->setCurrentHPR(osg::Vec3(
-                        0.f, -3.14159 / 4.0, 0.f));
-            }
-            break;
-        case 'j':
-        case 'J':
-            if (uavDOF)
-            {
-                uavDOF->setCurrentHPR(osg::Vec3(
-                        0.f, 0.f, -3.14159 / 4.0));
-            }
-            break;
-        case 'k':
-        case 'K':
-            if (uavDOF)
-            {
-                uavDOF->setCurrentHPR(
-                        osg::Vec3(0.f, 0.f, 3.14159 / 4.0));
-            }
-            break;
-        case osgGA::GUIEventAdapter::KEY_Space:
-            flushMouseEventStack();
-            _thrown = false;
-            home(ea, aa);
-            return true;
-            break;
-        //        case '1':
-        //            v =
-        //            getBoundingBoxPosition(_model.get());
-        //            cout << v.x() << " , " << v.y() << " ,
-        //            "
-        //                 << v.z() << endl;
-        //            break;
-        default:
-            break;
+            case osgGA::GUIEventAdapter::KEY_Space:
+                flushMouseEventStack();
+                _thrown = false;
+                home(ea, aa);
+                return true;
+                break;
+
+            default:
+                break;
+        }
+        return false;
     }
     return false;
+}
+
+bool MyHandler::handleFrame(
+        const osgGA::GUIEventAdapter& ea,
+        osgGA::GUIActionAdapter& aa)
+{
+    StandardManipulator::handleFrame(ea, aa);
+    osg::Vec3 v;
+    v = _uavDOF->getCurrentTranslate();
+    UpdateText(v, ea, _uavDOF);
+    return false;
+}
+
+void MyHandler::UpdateText(
+        const osg::Vec3f& v, const osgGA::GUIEventAdapter&,
+        const osgSim::DOFTransform* doft)
+{
+    std::string InfoStr = "";
+    std::ostringstream os;
+    os << "Name : " << doft->getName() << endl
+       << endl
+       << "X : " << v.x() << endl
+       << endl
+       << "Y : " << v.y() << endl
+       << endl
+       << "Z : " << v.z() << endl
+       << endl
+       << "Heading : " << endl
+       << endl
+       << "Pitch : " << endl
+       << endl
+       << "Rolling : ";
+    InfoStr = os.str();
+    setLabel(InfoStr);
 }
 
 // osg::Vec3 MyHandler::getBoundingBoxPosition(

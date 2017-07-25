@@ -16,7 +16,8 @@ SOURCES += main.cpp \
     uav.cpp \
     createhud_viewpoint.cpp \
     chud_viewpoint.cpp \
-    findnodevisitor.cpp
+    findnodevisitor.cpp \
+    pickhandler.cpp
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which as been marked deprecated (the exact warnings
@@ -37,4 +38,5 @@ HEADERS += \
     uav.h \
     createhud_viewpoint.h \
     chud_viewpoint.h \
-    findnodevisitor.h
+    findnodevisitor.h \
+    pickhandler.h

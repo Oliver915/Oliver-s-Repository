@@ -37,6 +37,7 @@ public:
         return _gw.get();
     }
 
+
 protected:
     void init();
     virtual void resizeGL(int width, int height);

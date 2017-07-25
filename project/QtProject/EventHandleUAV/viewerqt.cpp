@@ -10,9 +10,8 @@ ViewerQT::ViewerQT(
     //创建一个对称的透视投影，有关详细信息，请参阅OpenGL
     // gluPerspective文档.宽高比定义为宽/高。
     getCamera()->setProjectionMatrixAsPerspective(
-            30.0f,
-            static_cast<double>(width()) /
-                    static_cast<double>(height()),
+            30.0f, static_cast<double>(width()) /
+                           static_cast<double>(height()),
             1.0f, 10000.0f);
     //设置GraphicsContext，提供用于管理与此相机相关联的OpenGL图形上下文的机制。
     getCamera()->setGraphicsContext(getGraphicsWindow());

@@ -5,6 +5,7 @@
 #include <osg/Geometry>
 #include <osg/Group>
 #include <osg/MatrixTransform>
+#include <osg/Multisample>
 #include <osg/NodeCallback>
 #include <osg/PositionAttitudeTransform>
 #include <osg/TexEnv>
@@ -16,16 +17,16 @@
 #include <osgAnimation/StackedTranslateElement>
 #include <osgAnimation/UpdateMatrixTransform>
 #include <osgDB/ReadFile>
+#include <osgSim/DOFTransform>
 #include <osgText/Font>
 #include <osgText/Text>
-#include <osgSim/DOFTransform>
 
 class UAV : public osg::Node
 {
 public:
     UAV();
     virtual ~UAV() {}
-    osg::ref_ptr<osg::Node> CreateGlider(int a);
+    osg::ref_ptr<osg::Node> CreateGlider(int color, char num[]);
 
 protected:
     //    osg::ref_ptr<osg::PositionAttitudeTransform>
