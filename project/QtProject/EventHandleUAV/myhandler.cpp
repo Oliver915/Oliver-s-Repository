@@ -25,8 +25,8 @@ bool MyHandler::handleKeyDown(
             case 'A':
                 if (_uavDOF)
                 {
-                    _uavDOF->setCurrentTranslate(
-                            osg::Vec3(50.f, 50.f, 50.f));
+                    _uavDOF->setCurrentHPR(osg::Vec3(
+                            -3.14159 / 4.0, 0.f, 0.f));
                 }
                 break;
             case 'd':
@@ -87,6 +87,8 @@ bool MyHandler::handleKeyDown(
                 _uavDOF =
                         dynamic_cast<osgSim::DOFTransform*>(
                                 findUAVNode2.getFirst());
+                _uavDOF->setCurrentTranslate(
+                        osg::Vec3(-50.f, -50.f, 50.f));
                 break;
             }
             case '3':
@@ -96,6 +98,8 @@ bool MyHandler::handleKeyDown(
                 _uavDOF =
                         dynamic_cast<osgSim::DOFTransform*>(
                                 findUAVNode3.getFirst());
+                _uavDOF->setCurrentTranslate(
+                        osg::Vec3(80.f, -10.f, 50.f));
                 break;
             }
             case osgGA::GUIEventAdapter::KEY_Space:
@@ -118,31 +122,29 @@ bool MyHandler::handleFrame(
         osgGA::GUIActionAdapter& aa)
 {
     StandardManipulator::handleFrame(ea, aa);
-    osg::Vec3 v;
-    v = _uavDOF->getCurrentTranslate();
-    UpdateText(v, ea, _uavDOF);
+    UpdateText(ea, _uavDOF);
     return false;
 }
 
 void MyHandler::UpdateText(
-        const osg::Vec3f& v, const osgGA::GUIEventAdapter&,
+        const osgGA::GUIEventAdapter&,
         const osgSim::DOFTransform* doft)
 {
     std::string InfoStr = "";
     std::ostringstream os;
     os << "Name : " << doft->getName() << endl
        << endl
-       << "X : " << v.x() << endl
+       << "X : " << doft->getCurrentTranslate().x() << endl
        << endl
-       << "Y : " << v.y() << endl
+       << "Y : " << doft->getCurrentTranslate().y() << endl
        << endl
-       << "Z : " << v.z() << endl
+       << "Z : " << doft->getCurrentTranslate().z() << endl
        << endl
-       << "Heading : " << endl
+       << "Heading : " << doft->getCurrentHPR().x() << endl
        << endl
-       << "Pitch : " << endl
+       << "Pitch : " << doft->getCurrentHPR().y() << endl
        << endl
-       << "Rolling : ";
+       << "Rolling : " << doft->getCurrentHPR().z();
     InfoStr = os.str();
     setLabel(InfoStr);
 }

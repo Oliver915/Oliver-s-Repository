@@ -39,9 +39,7 @@ public:
             _text->setText(name);
         }
     }
-    void UpdateText(
-            const osg::Vec3f& v,
-            const osgGA::GUIEventAdapter&,
+    void UpdateText(const osgGA::GUIEventAdapter&,
             const osgSim::DOFTransform* doft);
 
 protected:
