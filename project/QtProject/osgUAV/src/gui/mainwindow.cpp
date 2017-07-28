@@ -123,8 +123,13 @@ void MainWindow::changeUAV(
     if (pPlane == nullptr) return;
     //    const MpsSHeader& head = pPlane->head();
     const MpsSPosition& pos = pPlane->pos();
+    double x, y;
+    x = ((pos.lng() * 20037508.34) / 180) / 1000 - 4968;
+    y = log(tan((90 + pos.lat()) * 3.14159 / 360)) /
+        (3.14159 / 180);
+    y = y * 20037508.34 / 180 / 1000 - 1440;
     temp->setCurrentTranslate(
-            osg::Vec3(pos.lng(), pos.lat(), pos.h() / 10));
+            osg::Vec3(x, y, pos.h() / 10));
     temp->setCurrentHPR(osg::Vec3(
             pPlane->yaw() / trans, pPlane->pitch() / trans,
             pPlane->roll() / trans));

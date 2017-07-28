@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <osgViewer/ViewerEventHandlers>
 #include <string>
+#include "math.h"
 #include "ui_mainwindow.h"
 #include "viewerqt.h"
 using namespace std;
