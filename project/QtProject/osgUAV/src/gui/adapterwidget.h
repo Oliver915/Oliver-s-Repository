@@ -12,7 +12,6 @@
 #include <osgGA/GUIEventAdapter>
 #include <osgViewer/Viewer>
 
-
 using Qt::WindowFlags;
 
 class AdapterWidget : public QGLWidget
@@ -22,21 +21,17 @@ public:
             QWidget* parent = 0, const char* name = 0,
             const QGLWidget* shareWidget = 0,
             WindowFlags f = 0);
-
     virtual ~AdapterWidget() {}
-
     osg::ref_ptr<osgViewer::GraphicsWindow>
     getGraphicsWindow()
     {
         return _gw.get();
     }
-
     const osg::ref_ptr<osgViewer::GraphicsWindow>
     getGraphicsWidow() const
     {
         return _gw.get();
     }
-
 
 protected:
     void init();
@@ -46,7 +41,6 @@ protected:
     virtual void mousePressEvent(QMouseEvent* event);
     virtual void mouseReleaseEvent(QMouseEvent* event);
     virtual void mouseMoveEvent(QMouseEvent* event);
-//    virtual void dataEvent();
 
     osg::ref_ptr<osgViewer::GraphicsWindowEmbedded> _gw;
 };

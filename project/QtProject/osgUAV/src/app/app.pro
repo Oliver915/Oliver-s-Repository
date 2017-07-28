@@ -8,6 +8,8 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
+CONFIG += c++11
+
 TARGET = osgUAV
 TEMPLATE = app
 
@@ -22,11 +24,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-DESTDIR = $$PWD/../../output-readroute
-
-INCLUDEPATH += \
-    $$PWD/../gui \
-    $$PWD/../protobuf
+DESTDIR = $$PWD/../../output-osgUAV
 
 CONFIG(debug, debug|release) {
     DESTDIR = $$DESTDIR-debug
@@ -34,14 +32,13 @@ CONFIG(debug, debug|release) {
     DESTDIR = $$DESTDIR-release
 }
 
-SOURCES += main.cpp\
-        mainwindow.cpp
-
-HEADERS  += mainwindow.h
-
-FORMS    += mainwindow.ui
+INCLUDEPATH += \
+    $$PWD/../protobuf \
+    $$PWD/../gui
 
 LIBS += \
-    -L$$OUT_PWD/../lib -lprotobuf -lgui -losg -losgDB -losgViewer -losgGA -losgUtil -losgQt -lOpenThreads -losgAnimation -losgText -losgSim
+    -L$$OUT_PWD/../lib -lprotobuf -lgui
+
+SOURCES += main.cpp
 
 

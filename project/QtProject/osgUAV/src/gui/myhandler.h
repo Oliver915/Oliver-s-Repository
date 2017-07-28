@@ -39,12 +39,13 @@ public:
             _text->setText(name);
         }
     }
-    void UpdateText(const osgGA::GUIEventAdapter&,
+    void UpdateText(
+            const osgGA::GUIEventAdapter&,
             const osgSim::DOFTransform* doft);
 
 protected:
-    osg::ref_ptr<osgText::Text> _text;
     osg::ref_ptr<osg::Node> _model;
+    osg::ref_ptr<osgText::Text> _text;
     osg::ref_ptr<osgSim::DOFTransform> _uavDOF;
 };
 

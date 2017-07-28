@@ -5,5 +5,8 @@ SUBDIRS += \
     src/gui \
     src/app
 
-app.depends = gui
+gui.depends = protobuf
+app.depends = gui protobuf
+
+
 

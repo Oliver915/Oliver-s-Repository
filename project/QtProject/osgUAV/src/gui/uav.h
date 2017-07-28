@@ -20,13 +20,16 @@
 #include <osgSim/DOFTransform>
 #include <osgText/Font>
 #include <osgText/Text>
+#include <string>
+using namespace std;
 
 class UAV : public osg::Node
 {
 public:
     UAV();
     virtual ~UAV() {}
-    osg::ref_ptr<osg::Node> CreateGlider(int color, char num[]);
+    osg::ref_ptr<osg::Node> CreateGlider(
+            int color, string index);
 
 protected:
     osg::ref_ptr<osg::PositionAttitudeTransform> LineTrans;

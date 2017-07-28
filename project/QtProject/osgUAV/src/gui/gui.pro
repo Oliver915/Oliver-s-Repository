@@ -9,13 +9,13 @@ TARGET = gui
 
 DESTDIR =$$OUT_PWD/../lib
 
-macx {
-    Framework_path = $$PWD/../../3rdparty/Frameworks
+INCLUDEPATH += \
+    $$PWD/../protobuf
 
-    INCLUDEPATH += \
-        $$Framework_path/GEOS.framework/Headers \
-        $$Framework_path/qgis_core.framework/Headers
-}
+LIBS += \
+    -losg -losgDB -losgViewer -losgGA -losgUtil -losgQt \
+    -lOpenThreads -losgAnimation -losgText -losgSim \
+    -L$$OUT_PWD/../lib -lprotobuf
 
 HEADERS += \
     uav.h \
@@ -23,7 +23,9 @@ HEADERS += \
     myhandler.h \
     findnodevisitor.h \
     viewerqt.h \
-    adapterwidget.h
+    adapterwidget.h \
+    mainwindow.h \
+    mps_coordinate.pb.h
 
 SOURCES += \
     uav.cpp \
@@ -31,6 +33,9 @@ SOURCES += \
     myhandler.cpp \
     findnodevisitor.cpp \
     viewerqt.cpp \
-    adapterwidget.cpp
+    adapterwidget.cpp \
+    mainwindow.cpp \
+    mps_coordinate.pb.cc
 
-LIBS  +=  -losg -losgDB -losgViewer -losgGA -losgUtil -losgQt -lOpenThreads -losgAnimation -losgText -losgSim
+FORMS += \
+    mainwindow.ui

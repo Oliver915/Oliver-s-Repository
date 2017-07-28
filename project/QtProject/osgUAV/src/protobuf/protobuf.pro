@@ -3,7 +3,7 @@
 # version : 3.3.0
 
 CONFIG -= app_bundle qt
-CONFIG += c++11 thread warn_off
+CONFIG += c++11 thread warn_off create_prl staticlib
 
 TEMPLATE = lib
 

@@ -7,5 +7,4 @@
 
 osg::Node* createHUD_viewPoint(osgText::Text* text);
 
-
 #endif // CREATEHUD_VIEWPOINT_H

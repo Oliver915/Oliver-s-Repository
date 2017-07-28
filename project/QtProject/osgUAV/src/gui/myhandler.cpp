@@ -68,8 +68,6 @@ bool MyHandler::handleKeyDown(
                 _uavDOF =
                         dynamic_cast<osgSim::DOFTransform*>(
                                 findUAVNode1.getFirst());
-                _uavDOF->setCurrentTranslate(
-                        osg::Vec3(50.f, 50.f, 50.f));
                 break;
             }
             case '2':
@@ -79,8 +77,6 @@ bool MyHandler::handleKeyDown(
                 _uavDOF =
                         dynamic_cast<osgSim::DOFTransform*>(
                                 findUAVNode2.getFirst());
-                _uavDOF->setCurrentTranslate(
-                        osg::Vec3(-50.f, -50.f, 50.f));
                 break;
             }
             case '3':
@@ -90,8 +86,6 @@ bool MyHandler::handleKeyDown(
                 _uavDOF =
                         dynamic_cast<osgSim::DOFTransform*>(
                                 findUAVNode3.getFirst());
-                _uavDOF->setCurrentTranslate(
-                        osg::Vec3(80.f, -10.f, 50.f));
                 break;
             }
             case osgGA::GUIEventAdapter::KEY_Space:
@@ -140,4 +134,3 @@ void MyHandler::UpdateText(
     InfoStr = os.str();
     setLabel(InfoStr);
 }
-
