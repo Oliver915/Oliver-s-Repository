@@ -14,7 +14,7 @@ int main(int, char**)
         osg::notify(osg::FATAL)
                 << "Failed in createSceneGraph()." << endl;
     bool result = osgDB::writeNodeFile(
-            *(root.get()), "Simple.osg");
+            *(root.get()), "SimpleMap.osg");
     if (!result)
         osg::notify(osg::FATAL)
                 << "Failed in osgDB::writeNode()." << endl;

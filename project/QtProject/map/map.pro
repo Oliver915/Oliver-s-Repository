@@ -14,4 +14,4 @@ SOURCES += main.cpp \
     creategridplane.cpp \
     createscenegraph.cpp
 
-LIBS  += -losg -losgDB -losgViewer -losgGA -losgUtil -losgText
+LIBS  += -losg -losgDB -losgViewer -losgGA -losgUtil -losgText -losgSim

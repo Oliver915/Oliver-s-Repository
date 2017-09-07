@@ -1,0 +1,165 @@
+Group {
+  nodeMask 0xffffffff
+  cullingActive TRUE
+  num_children 2
+  Group {
+    nodeMask 0xffffffff
+    cullingActive TRUE
+    num_children 2
+    Geode {
+      nodeMask 0xffffffff
+      cullingActive TRUE
+      StateSet {
+        rendering_hint DEFAULT_BIN
+        renderBinMode INHERIT
+        GL_LIGHTING OFF
+      }
+      num_drawables 1
+      Geometry {
+        useDisplayList TRUE
+        useVertexBufferObjects FALSE
+        PrimitiveSets 1
+        {
+          DrawArrays QUADS 0 4
+        }
+        VertexArray Vec3Array 4
+        {
+          -100 -100 0
+          100 -100 0
+          100 100 0
+          -100 100 0
+        }
+        NormalBinding OVERALL
+        NormalArray Vec3Array 1
+        {
+          0 -1 0
+        }
+        ColorBinding PER_VERTEX
+        ColorArray Vec4Array 4
+        {
+          0 0 1 1
+          0 0 1 1
+          0 0 1 1
+          0 0 1 1
+        }
+      }
+    }
+    Geode {
+      nodeMask 0xffffffff
+      cullingActive TRUE
+      StateSet {
+        rendering_hint DEFAULT_BIN
+        renderBinMode INHERIT
+        0xb20 ON
+        GL_LIGHTING PROTECTED|OFF
+        GL_DEPTH_TEST OFF
+        GL_POLYGON_OFFSET_POINT ON
+        GL_POLYGON_OFFSET_LINE ON
+        GL_POLYGON_OFFSET_FILL ON
+        PolygonOffset {
+          factor 1
+          units  1
+        }
+        LineWidth {
+          width 3
+        }
+      }
+      num_drawables 1
+      Geometry {
+        useDisplayList TRUE
+        useVertexBufferObjects FALSE
+        PrimitiveSets 1
+        {
+          DrawArrays LINES 0 36
+        }
+        VertexArray Vec3Array 36
+        {
+          -80 102 0
+          -80 -102 0
+          102 -80 0
+          -102 -80 0
+          -60 102 0
+          -60 -102 0
+          102 -60 0
+          -102 -60 0
+          -40 102 0
+          -40 -102 0
+          102 -40 0
+          -102 -40 0
+          -20 102 0
+          -20 -102 0
+          102 -20 0
+          -102 -20 0
+          0 102 0
+          0 -102 0
+          102 0 0
+          -102 0 0
+          20 102 0
+          20 -102 0
+          102 20 0
+          -102 20 0
+          40 102 0
+          40 -102 0
+          102 40 0
+          -102 40 0
+          60 102 0
+          60 -102 0
+          102 60 0
+          -102 60 0
+          80 102 0
+          80 -102 0
+          102 80 0
+          -102 80 0
+        }
+        NormalBinding OVERALL
+        NormalArray Vec3Array 1
+        {
+          0 -1 0
+        }
+        ColorBinding OVERALL
+        ColorArray Vec4Array 1
+        {
+          0 1 0 1
+        }
+      }
+    }
+  }
+  Geode {
+    nodeMask 0xffffffff
+    cullingActive TRUE
+    num_drawables 1
+    osgText::Text {
+      StateSet {
+        UniqueID StateSet_0
+        rendering_hint TRANSPARENT_BIN
+        renderBinMode USE
+        binNumber 10
+        binName DepthSortedBin
+      }
+      supportsDisplayList FALSE
+      useDisplayList FALSE
+      useVertexBufferObjects FALSE
+      color 1 1 1 1
+      fontResolution 32 32
+      characterSize 3 1
+      characterSizeMode OBJECT_COORDS
+      alignment LEFT_BASE_LINE
+      layout LEFT_TO_RIGHT
+      position -4 -110 0
+      drawMode 1
+      BoundingBoxMargin 0
+      BoundingBoxColor 0 0 0 0.5
+      text "120E"
+      backdropType NONE
+      backdropHorizontalOffset 0.07
+      backdropVerticalOffset 0.07
+      backdropColor 0 0 0 1
+      backdropImplementation 
+      colorGradientMode SOLID
+      colorGradientTopLeft 1 0 0 1
+      colorGradientBottomLeft 0 1 0 1
+      colorGradientBottomRight 0 0 1 1
+      colorGradientTopRight 1 1 1 1
+    }
+  }
+}
